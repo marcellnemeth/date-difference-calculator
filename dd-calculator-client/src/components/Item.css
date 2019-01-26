@@ -1,0 +1,10 @@
+.item {
+    border: 1px dashed black;
+    flex:1;
+    max-height: 30px;
+    width:50%;
+    margin:10px;
+    padding:10px;
+    align-self: flex-start;
+    cursor: pointer;
+}
