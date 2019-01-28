@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DateHelper {
-    private final static int DAYS_IN_YEAR = 365;
+    private static final int DAYS_IN_YEAR = 365;
 
 
     private DateHelper() {
@@ -14,7 +14,7 @@ public class DateHelper {
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 
-    public static int getDayDifferenceFromYears(int year1, int year2) {
+    public static int getDifferenceInDaysByYears(int year1, int year2) {
         int days = 0;
         if (year1 >= year2) {
             for (int i = year2; i < year1; i++) {
@@ -28,7 +28,7 @@ public class DateHelper {
         return days;
     }
 
-    public static int getDaysByMonth(int year, int month) {
+    public static int getNumberOfDaysByMonth(int year, int month) {
         int days = 0;
         Map<Integer, Integer> months = new HashMap<>();
         months.put(1, 31);

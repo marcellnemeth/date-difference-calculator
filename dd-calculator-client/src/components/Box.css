@@ -1,6 +1,7 @@
 .box {
-    border: 1px solid grey;
-    padding:10px;
+    border: 2px solid gainsboro;
+    padding:5px;
     margin:10px;
-    height: 400px;
+    min-height: 80px;
+
 }

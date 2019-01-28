@@ -4,12 +4,15 @@ import Target from './components/Target';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
-  import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
+import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 
 import './App.css';
 import Box from './components/Box';
 import axios from 'axios';
 import Result from './components/Result';
+import CustomModal from './components/CustomModal';
+import AppHeader from './components/AppHeader';
+import AppFooter from './components/AppFooter';
 
 class App extends Component {
   constructor(props) {
@@ -17,21 +20,21 @@ class App extends Component {
 
     this.state = {
       items1: [
-        { id: 1, name: '2019.01.22' },
-        { id: 2, name: '2018.04.30' },
-        { id: 3, name: '2015.08.10' },
+        { id: 1, name: '1997.01.05' },
+        { id: 2, name: '1998sdsd.10.6' },
+        { id: 3, name: '1971.07.30' },
         { id: 4, name: '2016.10.20' },
-        { id: 5, name: '2019.01.22' },
-        { id: 6, name: '2018.04.30' },
+        { id: 5, name: '2019.01.27' },
+        { id: 6, name: '2000.04.30' },
         { id: 7, name: '2015.08.10' },
-        { id: 8, name: '2016.10.20' },
-        { id: 9, name: '2019.01.22' },
-        { id: 10, name: '2018.04.30' },
-       
+        { id: 8, name: '2010.10.20' },
+        { id: 9, name: '2022.01.22' },
+        { id: 10, name: '2011.04.30' }
       ],
       items2: [],
       items3: [],
-      result:null
+      result: null,
+      open: false
     };
   }
 
@@ -46,14 +49,13 @@ class App extends Component {
             let itemsSource = prevState.items1;
             let itemsTarget = prevState.items2;
             const index = itemsSource.findIndex(item => item.id === id);
-          
 
             if (itemsTarget.length > 0) {
               itemsSource.push(itemsTarget[0]);
               itemsTarget.splice(0);
             }
             itemsTarget.push(itemsSource[index]);
-          
+
             return itemsTarget;
           });
         }
@@ -83,7 +85,7 @@ class App extends Component {
       }
 
       if (boxSource === 2) {
-        if(boxTarget == 2){
+        if (boxTarget == 2) {
           return;
         }
         if (boxTarget === 1) {
@@ -122,7 +124,7 @@ class App extends Component {
       }
 
       if (boxSource === 3) {
-        if(boxTarget === 3){
+        if (boxTarget === 3) {
           return;
         }
         if (boxTarget === 1) {
@@ -168,23 +170,83 @@ class App extends Component {
     }
   };
 
-  calculateDates = (date1,date2) => {
-    const request = axios.get(`http://localhost:8080/${date1}-${date2}`)
-    .then(response => {
-      this.setState({result : response.data});
-    });
-
-  }
+  calculateDates = (date1, date2) => {
+    const request = axios
+      .get(`http://localhost:8080/${date1}-${date2}`)
+      .then(response => {
+        
+        if (this.state.result !== response.data) {
+          this.setState({ result: response.data });
+          this.onOpenModal();
+        }
+      })
+      .catch(error => {
+        if(error.response){
+        this.setState({ result: error.response.data.message });
+        this.onOpenModal();
+        }
+      });
+  };
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.items2.length === 1 && prevState.items3.length === 1){
-    this.calculateDates(prevState.items2[0].name,prevState.items3[0].name);
+    if (prevState.open !== true) {
+      if (prevState.items2.length === 1 && prevState.items3.length === 1) {
+        this.calculateDates(prevState.items2[0].name, prevState.items3[0].name);
+      }
     }
   }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
+  resetState = () => {
+    console.log('first');
+    if (this.state.items2.length !== 0 && this.state.items3.length !== 0) {
+      console.log('second');
+      this.setState(prevState => {
+        console.log('third');
+        prevState.items1.push(prevState.items2[0]);
+        prevState.items1.push(prevState.items3[0]);
+        prevState.items2.splice(0);
+        prevState.items3.splice(0);
+        return prevState.items1;
+      });
+    } else if (this.state.items2.length !== 0) {
+      console.log('second');
+      this.setState(prevState => {
+        console.log('third');
+        prevState.items1.push(prevState.items2[0]);
+        prevState.items2.splice(0);
+        return prevState.items1;
+      });
+    } else if (this.state.items3.length !== 0) {
+      console.log('second');
+      this.setState(prevState => {
+        console.log('third');
+        prevState.items1.push(prevState.items3[0]);
+        prevState.items3.splice(0);
+        return prevState.items1;
+      });
+    }
+  };
   render() {
     return (
-      <div className="App">
-        <div className="app-container">
-          <div className="col">
+      <div className="wrapper">
+        <AppHeader />
+        <div className="hint">
+          <p>
+            <span className="text-highlight">Hint: </span>This application tells
+            you difference between two dates in days. You only have to grab a
+            date and drop to the first container and drop another to the second.
+            The application will calculate the difference (Note that if the
+            first date is smaller than the result will be negative)
+          </p>
+        </div>
+        <div className="container">
+          <div className="first">
             <Box
               boxSource={1}
               items={this.state.items1}
@@ -211,9 +273,20 @@ class App extends Component {
               }
             />
           </div>
-          
         </div>
-        {this.state.result?<Result result={this.state.result}/>:''}
+        {this.state.result ? (
+          <CustomModal
+            open={this.state.open}
+            onClose={this.onCloseModal}
+            result={this.state.result}
+          />
+        ) : (
+          ''
+        )}
+        <button onClick={this.resetState} className="button">
+          RESET
+        </button>
+        <AppFooter />
       </div>
     );
   }

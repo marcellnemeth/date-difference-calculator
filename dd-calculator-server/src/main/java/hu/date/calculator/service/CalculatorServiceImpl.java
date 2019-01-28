@@ -1,6 +1,7 @@
 package hu.date.calculator.service;
 
 import hu.date.calculator.model.CustomDate;
+import hu.date.calculator.util.ServiceHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Pattern;
@@ -10,6 +11,9 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public int calculateDifference(String date1, String date2) {
+
+        ServiceHelper.validateArguments(date1, date2);
+
         String[] parts = date1.split(Pattern.quote("."));
 
         int year = Integer.parseInt(parts[0]);

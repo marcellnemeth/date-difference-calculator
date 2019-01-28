@@ -14,9 +14,9 @@ public class CustomDate {
     }
 
     public int subtractDates(CustomDate date) {
-        int daysAndMonthsInDays = (DateHelper.getDaysByMonth(this.year, this.month) + this.day)
-                - (DateHelper.getDaysByMonth(date.year, date.month) + date.day);
-        int yearDiffInDays = DateHelper.getDayDifferenceFromYears(this.year, date.year);
+        int daysAndMonthsInDays = (DateHelper.getNumberOfDaysByMonth(this.year, this.month) + this.day)
+                - (DateHelper.getNumberOfDaysByMonth(date.year, date.month) + date.day);
+        int yearDiffInDays = DateHelper.getDifferenceInDaysByYears(this.year, date.year);
 
         return daysAndMonthsInDays + yearDiffInDays;
     }

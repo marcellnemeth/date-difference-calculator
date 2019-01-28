@@ -41,7 +41,7 @@ class Box extends Component {
   render() {
       
     const { isOver, canDrop, connectDropTarget } = this.props;
-    const hovered = isOver?"lightblue":"white";
+    const hovered = isOver?"gainsboro":"white";
    
     return connectDropTarget(
       <div className="box" style={{background:hovered}}>
