@@ -1,36 +1,37 @@
 .main-header {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    border-bottom:2px solid gainsboro;
-    
-  }
-  .main-header-container {
-    box-shadow: 0 0 3px 3px gainsboro;
-  }
-  
-  /* ---- Navigation ---- */
-  .name {
-    font-size: 1.35em;
-    margin: 0;
-    color:grey;
-  }
-  
-  
-
-  
-  @media (min-width: 1025px) {
-    .main-header {
-      flex-direction: row;
-      justify-content: space-around;
-    }
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-bottom: 2px solid gainsboro;
 }
-  /* ================================= 
-    Media Queries
-  ==================================== */
-  @media (min-width: 769px) {
-    .main-header {
-      width: 100%;
-      margin: 0 auto;
-    }
+.main-header-container {
+  box-shadow: 0 0 3px 3px gainsboro;
+}
+
+.name {
+  font-size: 1.35em;
+  margin: 0;
+  color: grey;
+}
+
+@media (max-width: 767px) {
+  .box,
+  .hint {
+    min-width: 90%;
+    max-width: 95%;
+    align-self: center;
   }
-  
+}
+@media (min-width: 768px) {
+  .box,
+  .hint {
+    min-width: 50%;
+    max-width: 75%;
+    align-self: center;
+  }
+}
+@media (min-width: 1025px) {
+  .main-header {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

@@ -1,7 +1,28 @@
 .box {
-    border: 2px solid gainsboro;
-    padding:5px;
-    margin:10px;
-    min-height: 80px;
+  border: 2px solid gainsboro;
+  padding: 5px;
+  margin: 10px;
+  min-height: 80px;
+}
+.items {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
+@media (max-width: 767px) {
+  .box {
+    min-width: 90%;
+    max-width: 95%;
+    align-self: center;
+  }
+}
+@media (min-width: 768px) {
+  .box {
+    min-width: 50%;
+    max-width: 75%;
+    align-self: center;
+  }
 }

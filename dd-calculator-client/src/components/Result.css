@@ -1,8 +1,7 @@
 .result-container {
-    font-size: 1.5em;
-    padding:30px;
-    
+  font-size: 1.5em;
+  padding: 30px;
 }
 .result {
-    color:red;
+  color: red;
 }

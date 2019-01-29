@@ -25,22 +25,13 @@ const BoxObject = {
         }
         return obj;
           
-    },
-    /*canDrop(props,monitor){
-        if(props.boxSource === 1){
-            return true;
-        }else if(props.items.length === 1){
-            return false;
-        }else{
-            return true;
-        }
-    }*/
+    }
 }
 
 class Box extends Component {
   render() {
       
-    const { isOver, canDrop, connectDropTarget } = this.props;
+    const { isOver, connectDropTarget } = this.props;
     const hovered = isOver?"gainsboro":"white";
    
     return connectDropTarget(

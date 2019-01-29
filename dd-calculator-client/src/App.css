@@ -1,15 +1,11 @@
-
-
 .wrapper {
   display: flex;
   flex-direction: column;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   justify-content: space-between;
-  text-align:center;
+  text-align: center;
   min-height: 100vh;
-
 }
-
 .container {
   display: flex;
   flex-direction: row;
@@ -18,31 +14,22 @@
 
 .col {
   display: flex;
-  justify-content: center;;
-  flex:1;
-}
-.items{
-  display: flex;
-  width:100%;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
-  
+  flex: 1;
 }
 
 .first {
   display: flex;
   justify-content: center;
-  flex:1;
+  flex: 1;
   min-width: 100%;
 }
 
-
 .button {
   background: none;
-  padding:10px;
-  min-width:20%;
-  border:none;
+  padding: 10px;
+  min-width: 20%;
+  border: none;
   outline: none;
   border: 2px solid gainsboro;
   max-width: 20%;
@@ -53,32 +40,28 @@
   font-weight: bold;
 }
 
-
-.button:active{
+.button:active {
   box-shadow: 0px 1px 1px 0px gainsboro;
 }
-.hint{
+.hint {
   text-align: justify;
 }
-.hint .text-highlight{
-  color:rgb(218, 15, 15);
-  font-weight: bold; 
+.hint .text-highlight {
+  color: rgb(218, 15, 15);
+  font-weight: bold;
 }
 
-@media(max-width: 767px){
-  .box,.hint {
-    min-width:90%;
+@media (max-width: 767px) {
+  .hint {
+    min-width: 90%;
     max-width: 95%;
     align-self: center;
-   
   }
 }
-@media(min-width: 768px){
-   
-  
-  .box,.hint {
-    min-width:50%;
-    max-width:75%;
+@media (min-width: 768px) {
+  .hint {
+    min-width: 50%;
+    max-width: 75%;
     align-self: center;
   }
 }

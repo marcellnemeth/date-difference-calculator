@@ -1,12 +1,12 @@
 .item {
-    border: 2px dashed gainsboro;
-    flex:1;
-    max-height: 30px;
-    width:50%;
-    padding:20px;
-    margin:10px;
-    max-width:200px; 
-    cursor: pointer;
-    line-height: .2;
-    color:grey;
+  border: 2px dashed gainsboro;
+  flex: 1;
+  max-height: 30px;
+  width: 50%;
+  padding: 20px;
+  margin: 10px;
+  max-width: 200px;
+  cursor: pointer;
+  line-height: 0.2;
+  color: grey;
 }
