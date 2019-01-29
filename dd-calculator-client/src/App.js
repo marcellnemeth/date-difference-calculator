@@ -168,10 +168,10 @@ class App extends Component {
     axios
       .get(`http://localhost:8080/${date1}-${date2}`)
       .then(response => {
+        this.setState({ update: true });
         if (this.state.result !== response.data) {
           this.setState({ result: response.data });
           this.onOpenModal();
-          this.setState({ update: true });
         }
       })
       .catch(error => {
@@ -189,6 +189,8 @@ class App extends Component {
     if (this.state.update) {
       if (prevState.open !== true) {
         if (prevState.items2.length === 1 && prevState.items3.length === 1) {
+          console.log(this.state.items3.length);
+
           this.setState({ update: false });
           this.calculateDates(
             prevState.items2[0].name,
@@ -230,6 +232,7 @@ class App extends Component {
     }
   };
   render() {
+    console.log(this.state.update);
     return (
       <div className="wrapper">
         <AppHeader />
@@ -239,7 +242,8 @@ class App extends Component {
             you difference between two dates in days. You only have to grab a
             date and drop to the first container and drop another to the second.
             The application will calculate the difference (Note that if the
-            first date is smaller than the second then the result will be negative)
+            first date is smaller than the second then the result will be
+            negative)
           </p>
         </div>
         <div className="container">
